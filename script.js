@@ -31,6 +31,7 @@ const CourseInfo = {
       }
     ]
   };
+
   
   // The provided learner submission data.
   const LearnerSubmissions = [
@@ -146,3 +147,42 @@ let ass1Learner132 = (LearnerSubmissions[3].submission.score)/(AssignmentGroup.a
 console.log(ass1Learner132);
 let ass2Learner132 = ((LearnerSubmissions[4].submission.score) - 15)/(AssignmentGroup.assignments[1].points_possible);
 console.log(ass2Learner132);
+
+// Create Arrays
+console.log('Create Arrays');
+let arrKey =['id', 'avg', '1', '2'];
+console.log(arrKey);
+
+let arr125= [LearnerSubmissions[0].learner_id, learner125Avg, ass1Learner125, ass2Learner125];
+console.log(arr125);
+
+let arr132 = [LearnerSubmissions[3].learner_id, learner132Avg, ass1Learner132, ass2Learner132 ];
+console.log(arr132);
+
+// push arrays into one array
+console.log('Push arrays into one array');
+let mainArr = []
+
+mainArr.push(arrKey, arr125, arr132)
+console.log(mainArr);
+
+let arrColumn = mainArr[0]
+console.log(arrColumn);
+
+let finalArr = []
+
+for (let i = 1; i < mainArr.length; i++) {
+    let arrRow = {};
+    for (let j = 0; j < mainArr[1].length; j++) {
+        arrRow[arrColumn[j]]=mainArr[i][j];
+    }
+    finalArr.push(arrRow)
+}
+
+console.log(finalArr);
+
+finalArr.reverse()
+console.log(finalArr);
+
+
+
