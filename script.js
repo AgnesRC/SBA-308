@@ -105,10 +105,10 @@ const CourseInfo = {
 
 // My Work Begins 
 
-// Identify all data needed for the string 
+// Use loops to make arrays of all data needed for the final object 
 console.log('Learner IDs');
 let larray = LearnerSubmissions;
-let lidArray = []
+const lidArray = []
 
 for (let i = 0; i < larray.length; i++) {
   if (lidArray.includes(larray[i].learner_id)) {
@@ -121,7 +121,7 @@ console.log(lidArray);
 
 console.log('Assignment Possible Scores');
 let array = AssignmentGroup.assignments;
-let ppArray = []
+const ppArray = []
 
 for (let i = 0; i < array.length; i++) {
   if (array[i].due_at === "3156-11-15") {
@@ -133,7 +133,7 @@ for (let i = 0; i < array.length; i++) {
 console.log(ppArray);
 
 console.log('Assignment IDs');
-let idArray = []
+const idArray = []
 
 for (let i = 0; i < array.length; i++) {
   if (array[i].due_at === "3156-11-15") {
@@ -144,7 +144,7 @@ for (let i = 0; i < array.length; i++) {
 console.log(idArray);
 
 console.log('Learner 125 & 132 scores:');
-let lscoreArray = []
+const lscoreArray = []
 
 for (let i = 0; i < LearnerSubmissions.length; i++) {
   let submission = LearnerSubmissions[i].submission;
@@ -160,7 +160,7 @@ for (let i = 0; i < LearnerSubmissions.length; i++) {
 console.log(lscoreArray);
 
 
-// Create new variables (condense names)
+// Create new variables
 console.log('Class Averages');
 let learner125Avg = (lscoreArray[0] + lscoreArray[1]) / (ppArray[0] + ppArray[1]);
 console.log(learner125Avg);
@@ -187,17 +187,15 @@ let arrKey =['id', 'avg'];
 arrKey = arrKey.concat(idArray);
 console.log(arrKey);
 
-
-
-let arr125= [lidArray[0], learner125Avg, ass1Learner125, ass2Learner125];
+const arr125= [lidArray[0], learner125Avg, ass1Learner125, ass2Learner125];
 console.log(arr125);
 
-let arr132 = [lidArray[1], learner132Avg, ass1Learner132, ass2Learner132 ];
+const arr132 = [lidArray[1], learner132Avg, ass1Learner132, ass2Learner132 ];
 console.log(arr132);
 
 // push arrays into one array
 console.log('Push arrays into one array');
-let mainArr = []
+const mainArr = []
 
 mainArr.push(arrKey, arr125, arr132)
 console.log(mainArr);
@@ -205,19 +203,19 @@ console.log(mainArr);
 let arrColumn = mainArr[0]
 console.log(arrColumn);
 
-let finalArr = []
-
-for (let i = 1; i < mainArr.length; i++) {
+// Create desired object
+function createFinalObj() {
+  const finalArr = []
+  for (let i = 1; i < mainArr.length; i++) {
     let arrRow = {};
     for (let j = 0; j < mainArr[1].length; j++) {
         arrRow[arrColumn[j]]=mainArr[i][j];
     }
     finalArr.push(arrRow)
 }
-
-console.log(finalArr);
-
-console.log(finalArr);
+return finalArr
+}
+console.log(createFinalObj())
 
 
 
