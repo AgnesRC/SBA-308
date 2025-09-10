@@ -107,56 +107,92 @@ const CourseInfo = {
 
 // Identify all data needed for the string 
 console.log('Learner IDs');
-console.log(LearnerSubmissions[0].learner_id);
-console.log(LearnerSubmissions[3].learner_id);
+let larray = LearnerSubmissions;
+let lidArray = []
+
+for (let i = 0; i < larray.length; i++) {
+  if (lidArray.includes(larray[i].learner_id)) {
+    continue
+  } else {
+    lidArray.push(larray[i].learner_id);
+  }
+}
+console.log(lidArray);
 
 console.log('Assignment Possible Scores');
-console.log(AssignmentGroup.assignments[0].points_possible);
-console.log(AssignmentGroup.assignments[1].points_possible);
+let array = AssignmentGroup.assignments;
+let ppArray = []
+
+for (let i = 0; i < array.length; i++) {
+  if (array[i].due_at === "3156-11-15") {
+    continue
+  } else {
+    ppArray.push(array[i].points_possible);
+  }
+}
+console.log(ppArray);
 
 console.log('Assignment IDs');
-console.log(AssignmentGroup.assignments[0].id);
-console.log(AssignmentGroup.assignments[1].id);
+let idArray = []
 
-console.log('Learner 125 scores:');
-console.log(LearnerSubmissions[0].submission.score);
-console.log(LearnerSubmissions[1].submission.score);
+for (let i = 0; i < array.length; i++) {
+  if (array[i].due_at === "3156-11-15") {
+    continue
+  } else {
+    idArray.push(array[i].id);}
+}
+console.log(idArray);
 
-console.log('Learner 132 scores:');
-console.log(LearnerSubmissions[3].submission.score);
-console.log((LearnerSubmissions[4].submission.score) - 15);
+console.log('Learner 125 & 132 scores:');
+let lscoreArray = []
+
+for (let i = 0; i < LearnerSubmissions.length; i++) {
+  let submission = LearnerSubmissions[i].submission;
+
+  if (submission && typeof submission.score === 'number') {
+    if (submission.score === 400) {
+      continue
+    } else {
+      lscoreArray.push(submission.score);
+    }
+  } 
+}
+console.log(lscoreArray);
 
 
 // Create new variables (condense names)
 console.log('Class Averages');
-let learner125Avg = (LearnerSubmissions[0].submission.score + LearnerSubmissions[1].submission.score) / (AssignmentGroup.assignments[0].points_possible + AssignmentGroup.assignments[1].points_possible);
+let learner125Avg = (lscoreArray[0] + lscoreArray[1]) / (ppArray[0] + ppArray[1]);
 console.log(learner125Avg);
 
-let learner132Avg = (LearnerSubmissions[3].submission.score + (LearnerSubmissions[4].submission.score - 15)) / (AssignmentGroup.assignments[0].points_possible + AssignmentGroup.assignments[1].points_possible);
+let learner132Avg = (lscoreArray[2]+ ((lscoreArray[3]) - 15)) / (ppArray[0] + ppArray[1]);
 console.log(learner132Avg);
 
 console.log('Individual Scores');
 console.log('Learner125');
-let ass1Learner125 = (LearnerSubmissions[0].submission.score)/(AssignmentGroup.assignments[0].points_possible);
+let ass1Learner125 = (lscoreArray[0])/(ppArray[0]);
 console.log(ass1Learner125);
-let ass2Learner125 = (LearnerSubmissions[1].submission.score)/(AssignmentGroup.assignments[1].points_possible);
+let ass2Learner125 = (lscoreArray[1])/(ppArray[1]);
 console.log(ass2Learner125);
 
 console.log('Learner 132');
-let ass1Learner132 = (LearnerSubmissions[3].submission.score)/(AssignmentGroup.assignments[0].points_possible);
+let ass1Learner132 = (lscoreArray[2])/(ppArray[0]);
 console.log(ass1Learner132);
-let ass2Learner132 = ((LearnerSubmissions[4].submission.score) - 15)/(AssignmentGroup.assignments[1].points_possible);
+let ass2Learner132 = ((lscoreArray[3]) - 15)/(ppArray[1]);
 console.log(ass2Learner132);
 
 // Create Arrays
 console.log('Create Arrays');
-let arrKey =['id', 'avg', '1', '2'];
+let arrKey =['id', 'avg'];
+arrKey = arrKey.concat(idArray);
 console.log(arrKey);
 
-let arr125= [LearnerSubmissions[0].learner_id, learner125Avg, ass1Learner125, ass2Learner125];
+
+
+let arr125= [lidArray[0], learner125Avg, ass1Learner125, ass2Learner125];
 console.log(arr125);
 
-let arr132 = [LearnerSubmissions[3].learner_id, learner132Avg, ass1Learner132, ass2Learner132 ];
+let arr132 = [lidArray[1], learner132Avg, ass1Learner132, ass2Learner132 ];
 console.log(arr132);
 
 // push arrays into one array
@@ -181,8 +217,13 @@ for (let i = 1; i < mainArr.length; i++) {
 
 console.log(finalArr);
 
-finalArr.reverse()
 console.log(finalArr);
+
+
+
+  
+
+
 
 
 
